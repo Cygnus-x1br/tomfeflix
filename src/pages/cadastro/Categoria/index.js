@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import PageDefault from '../../../components/PageDefault';
 import { Link } from 'react-router-dom';
+import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -24,28 +25,31 @@ function CadastroCategoria() {
      * ! Este Destructuring não funcionou para mim!!!!!!
      * ! Não entendo por que!!!!!
      */
-    //const { getAttribute, value } = infosDoEvento.target;
-    //setValue(getAttribute('name'), value);
+    // const { getAttribute, value } = infosDoEvento.target;
+    // setValue(getAttribute('name'), value);
     setValue(
       infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value
+      infosDoEvento.target.value,
     );
 
-    //console.log('[values]', values);
-    //console.log('[InfosDoEvento]', infosDoEvento.target.value);
-    //setValues(infosDoEvento.target.value);
+    // console.log('[values]', values);
+    // console.log('[InfosDoEvento]', infosDoEvento.target.value);
+    // setValues(infosDoEvento.target.value);
   }
-  //console.log('[nomeDaCategoria]', nomeDaCategoria);
+  // console.log('[nomeDaCategoria]', nomeDaCategoria);
 
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria: {values.nome}</h1>
+      <h1>
+        Cadastro de Categoria:
+        {values.nome}
+      </h1>
 
       <form
         // style={{ background: values }}
         onSubmit={function handleSubmit(infosDoEvento) {
           infosDoEvento.preventDefault();
-          //console.log('voce tentou enviar o form');
+          // console.log('voce tentou enviar o form');
           setCategorias([...categorias, values]);
 
           setValues(valoresIniciais);
@@ -70,7 +74,7 @@ function CadastroCategoria() {
               value={values.nome}
               onChange={
                 handleChange
-                // !Essa funçaõ mudou para handleChange
+                // !Essa função mudou para handleChange
                 //   function funcaoHandlerQueOErroPediu(infosDoEvento) {
                 //   //console.log('[values]', values);
                 //   //console.log('[InfosDoEvento]', infosDoEvento.target.value);
@@ -87,7 +91,7 @@ function CadastroCategoria() {
 
         <FormField
           label="Descrição"
-          type="text" //mudar para textarea
+          type="textarea" // mudar para textarea
           name="descricao"
           value={values.descricao}
           onChange={handleChange}
@@ -125,12 +129,18 @@ function CadastroCategoria() {
           </label>
         </div> */}
 
-        <button>Cadastrar</button>
+        <Button>
+          Cadastrar
+        </Button>
+
       </form>
+
       <ul>
-        {categorias.map((categoria, indice) => {
-          return <li key={`${categoria}${indice}`}>{categoria.nome}</li>;
-        })}
+        {categorias.map((categoria, indice) => (
+          <li key={`${categoria}${indice}`}>
+            {categoria.nome}
+          </li>
+        ))}
       </ul>
 
       <Link to="/">Ir para Home</Link>
