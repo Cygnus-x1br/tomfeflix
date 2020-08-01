@@ -59,7 +59,9 @@ background: #53585D;
   &:focus {
     border-bottom-color: var(--primary);
   }
+  
   // Essa parte faz a transição do label dos inputs
+  
   &:focus:not([type='color']) + ${Label.Text} {
     transform: scale(.6) translateY(-10px);
   }
@@ -83,6 +85,8 @@ function FormField({
   const tag = isTypeTextArea ? 'textarea' : 'input';
   // console.log(type);
 
+  const hasValue = value.length;
+
   return (
     <FormFieldWrapper>
       <Label
@@ -94,6 +98,7 @@ function FormField({
           type={type}
           value={value}
           name={name}
+          hasValue={hasValue}
           onChange={onChange}
         />
         <Label.Text>
